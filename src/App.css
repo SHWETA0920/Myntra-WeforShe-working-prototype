@@ -1,38 +1,1118 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* Update the main home-page container style */
+.home-page {
+  background-color: #ffe0e6; /* Very light pink for the full page background */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* New style for the central floating card */
+.home-floating-card {
+  background: linear-gradient(
+    to right,
+    #e91e63,
+    #e18a08
+  ); /* Your desired pink gradient */
+  color: white; /* Text color inside the card */
+  border-radius: 15px; /* Rounded corners */
+  padding: 50px 30px; /* Generous padding */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
+  max-width: 800px; /* Max width for the card */
+  width: 90%; /* Responsive width */
+  margin-bottom: 30px; /* Space between card and button */
+  position: relative; /* Needed for any potential internal positioning */
+}
+
+.home-floating-card h1 {
+  font-size: 3.5em;
+  font-weight: 700;
+  margin-top: 0; /* Remove default margin from h1 */
+  margin-bottom: 15px;
+  color: white; /* Title text color */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+}
+
+.home-floating-card h2 {
+  font-size: 1.8em;
+  font-weight: 400;
+  margin-top: 0;
+  opacity: 0.9;
+  color: white; /* Greeting text color */
+}
+
+.home-floating-card p {
+  font-size: 1.2em;
+  font-style: italic;
+  opacity: 0.8;
+  margin-top: 10px;
+  color: white; /* Motto text color */
+}
+
+/* Footer text for home page */
+.home-footer-text {
+  color: #e91e63; /* Medium pink for footer text */
+}
+
+/* Ensure the game-zone specific styles (for header and navigation) are also present for when you transition */
+.App-game-zone {
+  background-color: #f7f3f9; /* Your preferred background for other pages */
+  min-height: 100vh;
+  color: #333;
+}
+
+/* You can keep the creative-btn styles as they were, they should work well with this background. */
+.creative-btn {
+  background: white; /* White button background */
+  color: #e91e63; /* Button text color to match the card gradient */
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.2em;
+  font-weight: 500;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.creative-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    to right,
+    #e91e63,
+    #e18a08
+  ); /* Pink gradient on hover */
+  color: white; /* White text on hover */
+}
+
+.creative-btn span {
+  transition: transform 0.3s ease-in-out;
+}
+
+.creative-btn:hover span.arrow-icon {
+  transform: translateX(5px);
+}
+
+.creative-btn .arrow-icon {
+  font-size: 1.5em;
+  line-height: 1;
+}
+/* Slider Styles */
+.slider-container {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+  margin: 30px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.slider-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 2em;
+  color: #333;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.slider-btn:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+/* Carousel Container */
+.carousel-container {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+.carousel-track-container {
+  overflow: hidden; /* This hides images outside of the viewing area */
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.carousel-track {
+  display: flex; /* This makes the items align horizontally */
+  transition: transform 0.5s ease-in-out;
+  width: 100%; /* Ensures the track takes full width */
+}
+
+.carousel-item {
+  /* This is what makes each item a fixed size */
+  min-width: calc(100% / 4);
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.carousel-item img {
+  /* This sets the size of each image */
+  width: 100%;
+  height: 250px; /* Adjust height as needed, or use object-fit */
+  object-fit: cover; /* Ensures images are not stretched */
+  border-radius: 10px;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Carousel Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 1.5em;
+  color: #e91e63;
+  cursor: pointer;
+  padding: 0 15px;
+  height: 45px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  background-color: #e91e63;
   color: white;
+  transform: translateY(-50%) scale(1.05);
 }
 
-.App-link {
-  color: #61dafb;
+.prev-btn {
+  left: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.next-btn {
+  right: 0;
+}
+/* Add this CSS to the rest of your home page styles */
+.reflection-image {
+  position: absolute; /* Position it relative to the home-floating-card */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the image perfectly */
+  width: 80%; /* Adjust size as needed */
+  height: auto;
+  opacity: 0.15; /* Make it semi-transparent for the "reflection" effect */
+  z-index: 0; /* Place it behind the text */
+  pointer-events: none; /* Make it unclickable so it doesn't interfere with other elements */
+}
+
+/* Ensure your text is on top of the reflection image */
+.home-floating-card h1,
+.home-floating-card h2,
+.home-floating-card p {
+  position: relative;
+  z-index: 1; /* Place text on top of the reflection image */
+}
+/* Home Page Footer Styles */
+footer {
+  width: 100%; /* Make the footer span the full width */
+  padding: 20px 0; /* Add some vertical padding */
+  text-align: center; /* Center the text horizontally */
+  margin-top: auto; /* This pushes the footer to the bottom when using flex-direction: column on home-page */
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.home-footer-text {
+  color: #ff69b4; /* Lighter pink for footer text (or your preferred color) */
+  font-size: 0.9em;
+  margin: 0; /* Remove default paragraph margin */
+}
+
+/* Ensure .home-page has display: flex and flex-direction: column to make margin-top: auto work on footer */
+.home-page {
+  background-color: #ffe0e6;
+  min-height: 100vh;
+  display: flex; /* Crucial for vertical alignment */
+  flex-direction: column; /* Crucial for vertical alignment */
+  align-items: center; /* Centers items horizontally */
+  justify-content: flex-start; /* Aligns content to the start, letting footer push to bottom */
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+/* Create Page Styles */
+.create-page {
+  padding: 20px;
+}
+
+.designer-workspace {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Outfit Canvas Styles */
+.outfit-canvas-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.outfit-canvas-model-area {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Align model to the bottom */
+}
+
+.model-base {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+}
+
+.outfit-piece {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+/* You will need to fine-tune the positioning of each piece */
+.top-piece {
+  z-index: 2;
+  bottom: 250px;
+}
+.bottom-piece {
+  z-index: 1;
+  bottom: 150px;
+}
+.shoes-piece {
+  z-index: 3;
+  bottom: 0;
+}
+.accessory-piece {
+  z-index: 4;
+  bottom: 350px;
+}
+
+/* Virtual Closet Styles */
+.virtual-closet-container {
+  flex: 1;
+  background-color: #f8f8f8;
+  border-radius: 15px;
+  border-color: purple;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.closet-categories {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.closet-category-btn {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closet-category-btn.active,
+.closet-category-btn:hover {
+  background-color: #e91e63;
+  color: white;
+  border-color: #e91e63;
+}
+
+.closet-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.closet-item {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.closet-item:hover {
+  transform: scale(1.05);
+  border-color: #e91e63;
+}
+
+.closet-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* General Layout */
+body {
+  background-color: #f7f3f9;
+}
+
+.create-page-container {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.create-page-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.create-page-header h1 {
+  font-size: 38px;
+  font-weight: bold;
+  color: #4c096d;
+  margin-left: 29px;
+  margin-bottom: 8px;
+}
+
+.create-page-header p {
+  color: #7b7084;
+  margin-left: 29px;
+  font-size: 20px;
+}
+
+.create-page-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .create-page-content {
+    grid-template-columns: 2fr 1fr;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+/* Common Card Styles */
+/* Update the general card styles */
+.virtual-closet-card,
+.outfit-display-card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  padding: 24px;
+}
+
+/* Styles for the Base Shirt card (the static one) */
+.virtual-closet-card.static-card {
+  padding: 0; /* Remove padding for the full-width image */
+  height: 400px; /* Set a fixed height */
+  display: flex;
+  flex-direction: column;
+}
+
+.virtual-closet-card.static-card .virtual-closet-header {
+  padding: 24px; /* Add padding back to the header */
+  margin: 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.virtual-closet-card.static-card .virtual-closet-grid {
+  flex-grow: 1; /* Make the grid take up all available vertical space */
+  padding: 0;
+}
+
+.virtual-closet-card.static-card .closet-item-card {
+  flex-grow: 1;
+  padding: 0; /* Remove padding from the item card */
+}
+
+.virtual-closet-card.static-card .closet-item-image {
+  height: 100%; /* Make the image fill its container's height */
+}
+
+/* Styles for the other cards (Bottomwear and Accessories) */
+.virtual-closet-header {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+}
+
+.virtual-closet-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+}
+
+.virtual-closet-grid {
+  display: grid; /* Use a grid for the two-column layout */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.closet-item-card {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 4px solid transparent;
+}
+
+.closet-item-card.selected {
+  border-color: #4299e1;
+  box-shadow: 0 0 0 4px #4299e1;
+}
+
+.closet-item-card:hover:not(.selected) {
+  transform: scale(1.05);
+}
+
+.closet-item-image {
+  width: 100%;
+  height: 128px; /* Reset the height for these cards */
+  object-fit: cover;
+  display: block;
+}
+
+.closet-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+}
+
+.closet-item-card:hover .closet-item-overlay {
+  opacity: 1;
+}
+
+.closet-item-name {
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.virtual-closet-card,
+.outfit-display-card {
+  background-color: rgb(231, 222, 207);
+  border-radius: 16px;
+  /* Add these two lines to make the border visible */
+  border: 1.5px solid #d79c37;
+  /* You can remove border-color: #6a1b9a; now as it's part of the shorthand */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  padding: 24px;
+}
+
+.virtual-closet-header,
+.outfit-display-header {
+  border-bottom: 1px solid #faa108;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+}
+
+.virtual-closet-header h2,
+.outfit-display-header h2 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+}
+
+/* Virtual Closet Grid */
+.virtual-closet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.closet-item-card {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 12px;
+  border-color: #6a1b9a;
+  overflow: hidden;
+  border: 4px solid transparent;
+}
+
+.closet-item-card.selected {
+  border-color: #4299e1;
+  box-shadow: 0 0 0 4px #4299e1;
+}
+
+.closet-item-card:hover:not(.selected) {
+  transform: scale(1.05);
+}
+
+.closet-item-image {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.closet-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+}
+
+.closet-item-card:hover .closet-item-overlay {
+  opacity: 1;
+}
+
+.closet-item-name {
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+}
+.selection-area {
+  display: flex;
+  flex-direction: column;
+  /* Increase this value to add more space between the cards */
+  gap: 48px;
+}
+
+/* Outfit Display */
+.outfit-preview-list {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.outfit-item-preview {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: #f7fafc;
+  border-radius: 12px;
+}
+
+.preview-image {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.preview-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-name {
+  font-weight: 500;
+  color: #1a202c;
+  margin: 0;
+}
+
+.preview-category {
+  font-size: 14px;
+  color: #4a5568;
+  margin: 0;
+}
+
+.outfit-name-input {
+  margin-bottom: 24px;
+}
+
+.outfit-name-input label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 8px;
+}
+
+.outfit-name-input input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: border-color 0.2s;
+}
+
+.outfit-name-input input:focus {
+  border-color: #4299e1;
+  outline: none;
+}
+
+.save-button {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+  transition: all 0.3s;
+}
+
+.save-button:not(.disabled) {
+  background-color: #4299e1;
+  cursor: pointer;
+}
+
+.save-button:not(.disabled):hover {
+  background-color: #3182ce;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.save-button.disabled {
+  background-color: #e2e8f0;
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.save-message {
+  text-align: center;
+  font-size: 14px;
+  color: #a0aec0;
+  margin-top: 16px;
+}
+/* Navigation Bar Styles */
+.navigation-bar {
+  background-color: white;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.navigation-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Makes the list horizontal */
+  justify-content: center; /* Centers the tabs */
+  gap: 30px; /* Adds space between each tab */
+}
+
+.navigation-bar li button {
+  background: none;
+  border: none;
+  font-size: 1em;
+  color: #555;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: color 0.3s ease;
+  position: relative;
+  font-weight: 500;
+  text-transform: capitalize; /* Optional: capitalizes first letter */
+}
+
+.navigation-bar li button:hover {
+  color: #e91e63; /* Medium pink on hover */
+}
+
+.navigation-bar li.active button {
+  color: #e91e63; /* Pink for the active tab */
+  font-weight: bold;
+}
+
+/* Add a line below the active tab */
+.navigation-bar li.active button::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  background-color: #e91e63;
+  border-radius: 1px;
+}
+.back-button {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+
+.back-button:hover {
+  color: #e91e63;
+}
+.home-logo-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.home-logo-btn:hover {
+  transform: scale(1.05);
+}
+
+.logo-image {
+  height: 40px; /* Adjust the size of the logo as needed */
+  width: auto;
+}
+/* Showcase Page Styles */
+.showcase-page {
+  background-color: #f7f3f9;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-header h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #880e4f;
+  margin-bottom: 5px;
+}
+
+.page-header p {
+  color: #6a1b9a;
+  font-size: 1.1em;
+}
+
+/* Winner Section */
+.winner-section {
+  background: linear-gradient(135deg, #f0e4ff, #e6d3ff);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 0 auto 40px auto;
+  max-width: 900px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.winner-details h2 {
+  font-size: 2em;
+  color: #880e4f;
+  margin-bottom: 10px;
+}
+
+.winner-details h3 {
+  font-size: 1.5em;
+  color: #6a1b9a;
+  margin-bottom: 15px;
+}
+
+.winner-details p {
+  font-size: 1.2em;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.star-icon {
+  color: #ffd700;
+}
+
+.heart-icon {
+  color: #ff69b4;
+}
+
+.outfit-preview-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.outfit-preview-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  width: 150px;
+}
+
+.outfit-preview-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.outfit-preview-card p {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Full Leaderboard Section */
+.leaderboard-section {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+}
+
+.leaderboard-section h2 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #880e4f;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.leaderboard-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.leaderboard-column h3 {
+  font-size: 1.5em;
+  color: #6a1b9a;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ranking-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+}
+
+.ranking-rank {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #e91e63;
+  margin-right: 15px;
+}
+
+.ranking-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.ranking-votes,
+.ranking-score {
+  font-size: 1em;
+  color: #555;
+}
+
+.ranking-card p {
+  margin: 0;
+}
+
+.ranking-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Statistics Footer */
+.leaderboard-stats {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-stats p {
+  font-size: 1em;
+  color: #6a1b9a;
+  margin: 0;
+  font-weight: 600;
+}
+
+.leaderboard-stats span {
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #e91e63;
+  margin-top: 5px;
+} /* Final Rankings Styling */
+.ranking-card.rank-1 {
+  background: linear-gradient(90deg, #fff2cc, #f7e0a2);
+  color: #a07000;
+  font-weight: bold;
+}
+
+.ranking-card.rank-2 {
+  background: linear-gradient(90deg, #e0e6ed, #b4c2d3);
+  color: #3f475c;
+  font-weight: bold;
+}
+
+.ranking-card.rank-3 {
+  background: linear-gradient(90deg, #ffd3b6, #ffaf8a);
+  color: #9c4500;
+  font-weight: bold;
+}
+
+.ranking-card.rank-1 .ranking-rank {
+  color: #a07000;
+}
+
+.ranking-card.rank-2 .ranking-rank {
+  color: #3f475c;
+}
+
+.ranking-card.rank-3 .ranking-rank {
+  color: #9c4500;
+}
+
+.ranking-rank {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.ranking-details {
+  flex: 1;
+}
+
+.ranking-name {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ranking-score {
+  font-size: 0.9em;
+  margin: 0;
+}
+/* Gender Selection Page Styles */
+.gender-select-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f7e0d3;
+  text-align: center;
+}
+
+.gender-select-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3em;
+  color: #1a202c;
+}
+
+.gender-select-header p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2em;
+  color: #4a5568;
+}
+
+.gender-select-options {
+  display: flex;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.gender-btn {
+  background-color: white;
+  border: 2px solid #e91e63;
+  color: #e91e63;
+  padding: 20px 40px;
+  border-radius: 15px;
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.gender-btn:hover {
+  background-color: #e91e63;
+  color: white;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
